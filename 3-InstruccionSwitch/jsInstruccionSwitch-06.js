@@ -1,5 +1,31 @@
 function mostrar()
 {
+let hora
+hora= parseInt(document.getElementById("txtIdHora").value);
+
+if(hora >=7 && hora <=11)
+{
+	alert("es de ma;ana");
+}
+else if(hora>=12 && hora<=19)
+{
+	alert("es de tarde");
+}
+else if((hora>=0 && hora<=6) || (hora>=20 && <=24))
+{
+alert("es de noche");
+}
+else
+{
+	alert("La hora no existe");
+}
+
+
+}
+
+
+
+/*{
 	//tomo la hora
 	let hora 
 
