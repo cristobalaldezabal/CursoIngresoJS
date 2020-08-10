@@ -1,104 +1,106 @@
-
 function mostrar()
 {
-let precio;
-let cantidadunidades;
-let acumuladorjabon=0;
-let acumuladoralcohol=0;
-let marca;
-let fabricante;
-let producto;
 let tipo;
-let alcoholmasbarato;
-let flag1=0;
-let acumuladorbarbijo=0;
-let fabricantealcohol;
-let contalcohol;
-let contbarbijo;
-let contjabon;
+let maxtipojabon; 
+let maxtipo;
+let precio;
+let maxprecio;
+let cantunidades;
+let fabricante;
+let fabricantecaro;
+let jaboncaro;
 
-contbarbijo=0;
-contjabon=0;
-contalcohol=0;
+let acujabon=0;
+let acubarbijos=0;
+let acualcohol=0;
+
+let contjabon=0;
+let contbarbijos=0;
+let contalcohol=0;
+
+let promedio;
+
+let flag=0;
 
 
 
-for(let i = 0 ;i < 5 ; i++  )
+for(let i=0; i<5 ; i++)
 {
 
+do
+{
+
+tipo=prompt("ingrese tipo de producto");
 
 
-	producto=prompt("ingrese un articulo");
+}while(tipo!="barbijo"&&tipo!="jabon"&&tipo!="alcohol");
 
 
-	do {
-		precio=prompt("ingrese precio");
-	}while(precio<300 && precio>100);
+do{
 
-	fabricante=prompt("ingrese el fabricante");
-	marca=prompt("ingrese la marca");
+	precio=parseInt(prompt("ingrese precio"));
 
-	do{
-		cantidadunidades=prompt("ingrese cantidad de unidades");
-	}while(cantidadunidades<1000 && cantidadunidades>1);
+}while(precio<100 || precio>300);
 
-	do
+do{
+
+cantunidades=parseInt(prompt("ingrese la cantidad de unidades"));
+}while(cantunidades<0 || cantunidades>1000);
+
+fabricante=prompt("ingrese fabricante");
+
+switch(tipo){
+	case "jabon":
+acujabon=acujabon+cantunidades;
+	contjabon++;
+	
+	if(flag==0|| maxprecio>precio)
 	{
-	tipo=prompt("ingrese categoria: jabon, barbijo, alcohol");
+	
+	maxprecio=precio;
+	maxtipojabon=cantunidades;
+	fabricantecaro=fabricante;
+	}
+	break;
+	case "barbijo":
+	acubarbijos=acubarbijos+cantunidades;
+	contbarbijos++;
+	break;
 
-		switch(tipo)
-		{			
+	case "alcohol":
+	acualcohol=acualcohol+cantunidades;
+	contalcohol++;
+	break;
+	}
 
 
-			case "alcohol":
-					contadoralcohol=contadoralcohol+cantidadunidades;
-
-				if(flag1==0 || alcoholmasbarato>precio){
-					alcoholmasbarato=precio;
-				fabricantealcohol=fabricante;
-					flag1=1;
-					contalcohol++;
-				}
-			break;
-			case "jabon":
-				acumuladorjabon=acumuladorjabon+cantidadunidades;
-				contjabon++;
-			break;
-			case "barbijo":
-				acumuladorbarbijo=acumuladorbarbijo+cantidadunidades;
-				contbarbijo++;
-			break;
-
-		}
-	}while(tipo!="jabon" || tipo!="barbijo" || tipo!="alcohol");
 
 
 }
+if(acujabon>acubarbijos&&acujabon>acualcohol)
+{
+	maxtipo="jabon";
+	promedio=acujabon/cantunidades;
+}
+else if (acubarbijos>acujabon&&acubarbijos>acualcohol)
+{
+	maxtipo="barbijo";
+	promedio=acubarbijos/cantunidades;
+}
+
+else{
+	maxtipo="alcohol";
+	promedio=acualcohol/cantunidades;
+} 
 
 
-	if (acumuladorjabon>acumuladoralcohol&& acumuladorjabon>acumuladorbarbijo)
-		{
-		
-		acumuladorjabon/cantidadunidades=promedio;
-		
-		else if(acumuladoralcohol>acumuladorjabon&&acumuladoralcohol>acumuladorbarbijo)
-	 acumuladoralcohol/cantidadunidades=promedio;
-	else
-		acumuladorbarbijo/cantidadunidades=promedio;
-
-	 }
-
-	if(producto=="jabon"){
+alert("el jabon mas caro es "+maxprecio+ "y su fabricante es " + fabricantecaro);
+alert("el producto con mayor cantidad de unidades es " +maxtipo+ " y su promedio es "+promedio);
+alert("la cantidad de barbijos que se compraron es de "+acubarbijos);
 
 
-	alert("la cantidad de jabon es "+ acumuladorjabon);
-
-	}
-	if(producto=="alcohol"){
 
 
-	alert("la cantidad de alcohol es " +acumuladoralcohol+ " y su fabricante es "+fabricantealcohol  );
 
-	}
 
 }	
